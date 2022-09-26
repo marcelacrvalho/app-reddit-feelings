@@ -23,14 +23,14 @@ class CustomDataGridView extends StatelessWidget {
                 Text(
                   'TICKER',
                   style: TextStyle(
-                    color: appThemeData.primaryColorDark,
+                    color: appThemeData.primaryColorLight,
                     fontSize: appThemeData.textTheme.titleLarge?.fontSize,
                   ),
                 ),
                 Text(
                   'Sentimento',
                   style: TextStyle(
-                    color: appThemeData.primaryColorDark,
+                    color: appThemeData.primaryColorLight,
                     fontSize: appThemeData.textTheme.bodyMedium?.fontSize,
                   ),
                 )

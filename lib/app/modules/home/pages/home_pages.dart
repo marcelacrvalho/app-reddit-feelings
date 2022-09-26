@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reddit_feeling/app/modules/home/controllers/home_controllers.dart';
-import 'package:reddit_feeling/app/modules/home/controllers/home_controllers.dart';
 import 'package:reddit_feeling/app/modules/home/widgets/data_grid_view_widgets.dart';
 import 'package:reddit_feeling/app/theme/app_theme.dart';
 import '../widgets/data_card_widgets.dart';
@@ -22,7 +21,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
         elevation: 0.0,
-        backgroundColor: appThemeData.primaryColorDark,
+        backgroundColor: appThemeData.scaffoldBackgroundColor,
       ),
       body: _body(),
     );

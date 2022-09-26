@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reddit_feeling/app/modules/home/controllers/home_controllers.dart';
 import '../../../theme/app_theme.dart';
 
 class CustomDataGridView extends StatelessWidget {
@@ -6,38 +7,60 @@ class CustomDataGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+    return FutureBuilder(
+        future: HomeController.to.fetch(),
+        builder: (context, snapshot) {
+          return _switchSnapshot(snapshot);
+        });
+  }
+
+  Widget _switchSnapshot(AsyncSnapshot snapshot) {
+    switch (snapshot.connectionState) {
+      case ConnectionState.done:
+        return _gridViewStyle();
+      default:
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+    }
+  }
+
+  Widget _gridViewStyle() {
+    return GridView.builder(
+        physics: const BouncingScrollPhysics(),
+        itemCount: HomeController.to.listData!.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 3.0,
-          mainAxisSpacing: 3.0
-      ),
-      children: [
-        Container(
-            color: appThemeData.primaryColorLight.withOpacity(0.2),
-            width: 100,
-            height: 100,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'TICKER',
-                  style: TextStyle(
-                    color: appThemeData.primaryColorLight,
-                    fontSize: appThemeData.textTheme.titleLarge?.fontSize,
-                  ),
-                ),
-                Text(
-                  'Sentimento',
-                  style: TextStyle(
-                    color: appThemeData.primaryColorLight,
-                    fontSize: appThemeData.textTheme.bodyMedium?.fontSize,
-                  ),
-                )
-              ],
-            )
+          mainAxisSpacing: 3.0,
         ),
-      ],
-    );
+        itemBuilder: (context, index) {
+          return Container(
+              color: appThemeData.primaryColorLight.withOpacity(0.2),
+              width: 100,
+              height: 100,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    HomeController.to.listData![index].ticker!,
+                    style: TextStyle(
+                      color: HomeController.to.listData?[index].sentiment ==
+                              'Bullish'
+                          ? HomeController.to.listColorsFeeling[0]
+                          : HomeController.to.listColorsFeeling[1],
+                      fontSize: appThemeData.textTheme.titleLarge?.fontSize,
+                    ),
+                  ),
+                  Text(
+                    HomeController.to.listData![index].sentiment!,
+                    style: TextStyle(
+                      color: appThemeData.primaryColorLight,
+                      fontSize: appThemeData.textTheme.bodyMedium?.fontSize,
+                    ),
+                  )
+                ],
+              ));
+        });
   }
 }

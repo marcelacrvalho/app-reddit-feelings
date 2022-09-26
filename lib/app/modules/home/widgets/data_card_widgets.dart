@@ -19,7 +19,7 @@ class CustomDataCard extends StatelessWidget {
                 child: Icon(
                   Icons.bar_chart,
                   size: Get.mediaQuery.size.width * 0.8,
-                  color: appThemeData.primaryColorLight.withOpacity(0.1),
+                  color: appThemeData.primaryColorLight.withOpacity(0.05),
                 ),
               ),
               Center(
@@ -29,9 +29,9 @@ class CustomDataCard extends StatelessWidget {
                     fontSize: appThemeData.textTheme.titleLarge!.fontSize,
                     fontWeight: FontWeight.bold,
                     color:
-                        HomeController.to.listData?[index].sentiment == 'Bullish'
-                            ? HomeController.to.listColorsFeeling[0]
-                            : HomeController.to.listColorsFeeling[1],
+                    HomeController.to.listData?[index].sentiment == 'Bullish'
+                        ? HomeController.to.listColorsFeeling[0]
+                        : HomeController.to.listColorsFeeling[1],
                   ),
                 ),
               ),
@@ -70,7 +70,7 @@ class CustomDataCard extends StatelessWidget {
                   color: HomeController.to.listData?[index].sentiment == 'Bullish'
                       ? HomeController.to.listColorsFeeling[0]
                       : HomeController.to.listColorsFeeling[1],
-                  width: Get.mediaQuery.size.width * 0.005,
+                  width: Get.mediaQuery.size.width * 0.003,
                   height: Get.mediaQuery.size.height * 0.1,
                 ),
                 Text(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 final ThemeData appThemeData = ThemeData(
   scaffoldBackgroundColor: Colors.blue.shade900,
-  primarySwatch: Colors.blue,
   primaryColor: Colors.indigo,
   primaryColorDark: Colors.blue.shade900,
   dividerColor: Colors.transparent,

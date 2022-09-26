@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:reddit_feeling/app/modules/home/controllers/home_controllers.dart';
+import 'package:reddit_feeling/app/modules/home/controllers/home_controllers.dart';
+import 'package:reddit_feeling/app/modules/home/widgets/data_grid_view_widgets.dart';
 import 'package:reddit_feeling/app/theme/app_theme.dart';
+import '../widgets/data_card_widgets.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -8,63 +12,56 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: GestureDetector(
+          onTap: () => HomeController.to.isIconClicked.value = !HomeController.to.isIconClicked.value,
+          child: Icon(
+            Icons.grid_view,
+            size: 25.0,
+            color: appThemeData.primaryColorLight,
+          ),
+        ),
+        elevation: 0.0,
+        backgroundColor: appThemeData.primaryColorDark,
+      ),
       body: _body(),
     );
   }
 
   Widget _body() {
     return SafeArea(
-      child: Column(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Stack(
-              children: [
-                Center(
-                  child: Icon(
-                    Icons.bar_chart,
-                    size: Get.mediaQuery.size.width * 0.8,
-                    color: appThemeData.primaryColorLight.withOpacity(0.1),
-                  ),
-                ),
-                Center(
-                  child: Text(
-                    'TICKER',
-                    style: TextStyle(
-                      fontSize: appThemeData.textTheme.titleLarge!.fontSize,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Card(
-              color: appThemeData.primaryColorDark.withOpacity(0.7),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Obx(
+          () => !HomeController.to.isIconClicked.value ?
+          Column(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Stack(
                   children: [
-                    Text(
-                      'sentimento',
-                      style: TextStyle(
-                        fontSize: appThemeData.textTheme.bodyMedium!.fontSize,
+                    Center(
+                      child: Icon(
+                        Icons.bar_chart,
+                        size: Get.mediaQuery.size.width * 0.8,
+                        color: appThemeData.primaryColorLight.withOpacity(0.1),
                       ),
                     ),
-                    Text(
-                      'pontuação',
-                      style: TextStyle(
-                        fontSize: appThemeData.textTheme.bodyMedium!.fontSize,
+                    Center(
+                      child: Text(
+                        'TICKER',
+                        style: TextStyle(
+                          fontSize: appThemeData.textTheme.titleLarge!.fontSize,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
                 ),
-              ),
-            ),
+              ), const Expanded(child: CustomDataCard())
+            ],
+          ) : const Padding(
+            padding: EdgeInsets.all(3.0),
+            child: CustomDataGridView(),
           ),
-        ],
       ),
     );
   }

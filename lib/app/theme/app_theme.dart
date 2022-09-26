@@ -10,7 +10,7 @@ final ThemeData appThemeData = ThemeData(
   textTheme: const TextTheme(
     titleLarge: TextStyle(
       color: Colors.white,
-      fontSize: 30.0,
+      fontSize: 35.0,
     ),
     bodyMedium: TextStyle(
       color: Colors.white,

@@ -35,32 +35,34 @@ class CustomDataGridView extends StatelessWidget {
           mainAxisSpacing: 3.0,
         ),
         itemBuilder: (context, index) {
-          return Container(
-              color: appThemeData.primaryColorLight.withOpacity(0.2),
-              width: 100,
-              height: 100,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    HomeController.to.listData![index].ticker!,
-                    style: TextStyle(
-                      color: HomeController.to.listData?[index].sentiment ==
-                              'Bullish'
-                          ? HomeController.to.listColorsFeeling[0]
-                          : HomeController.to.listColorsFeeling[1],
-                      fontSize: appThemeData.textTheme.titleLarge?.fontSize,
+          return GestureDetector(
+            child: Container(
+                color: appThemeData.primaryColorLight.withOpacity(0.2),
+                width: 100,
+                height: 100,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      HomeController.to.listData![index].ticker!,
+                      style: TextStyle(
+                        color: HomeController.to.listData?[index].sentiment ==
+                                'Bullish'
+                            ? HomeController.to.listColorsFeeling[0]
+                            : HomeController.to.listColorsFeeling[1],
+                        fontSize: appThemeData.textTheme.titleLarge?.fontSize,
+                      ),
                     ),
-                  ),
-                  Text(
-                    HomeController.to.listData![index].sentiment!,
-                    style: TextStyle(
-                      color: appThemeData.primaryColorLight,
-                      fontSize: appThemeData.textTheme.bodyMedium?.fontSize,
-                    ),
-                  )
-                ],
-              ));
+                    Text(
+                      HomeController.to.listData![index].sentiment!,
+                      style: TextStyle(
+                        color: appThemeData.primaryColorLight,
+                        fontSize: appThemeData.textTheme.bodyMedium?.fontSize,
+                      ),
+                    )
+                  ],
+                )),
+          );
         });
   }
 }

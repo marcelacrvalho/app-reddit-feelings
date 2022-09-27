@@ -9,7 +9,7 @@ class HomeController extends GetxController {
   static HomeController get to => Get.find<HomeController>();
   List<Data>? listData;
   RxBool isIconClicked = false.obs;
-  List<Color> listColorsFeeling = [Colors.red, Colors.green];
+  List<Color> listColorsFeeling = [Colors.green, Colors.red];
   late int randomIndex;
 
   @override

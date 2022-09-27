@@ -32,7 +32,10 @@ class HomePage extends StatelessWidget {
     return SafeArea(
       child: Obx(
         () => !HomeController.to.isIconClicked.value
-            ? CustomDataCard(index: HomeController.to.randomIndex,) : const Padding(
+            ? CustomDataCard(
+                index: HomeController.to.randomIndex ?? 0,
+              )
+            : const Padding(
                 padding: EdgeInsets.all(3.0),
                 child: CustomDataGridView(),
               ),

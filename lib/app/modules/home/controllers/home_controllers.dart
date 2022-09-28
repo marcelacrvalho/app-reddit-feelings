@@ -11,8 +11,8 @@ class HomeController extends GetxController {
   late Data currentData;
 
   @override
-  void onInit() async {
-    await fetch();
+  void onInit() {
+    fetch();
     super.onInit();
   }
 

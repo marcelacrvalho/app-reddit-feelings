@@ -8,8 +8,8 @@ import 'app/theme/app_theme.dart';
 void main() async {
   runApp(
     GetMaterialApp(
-      defaultTransition: Transition.cupertino,
-      transitionDuration: const Duration(seconds: 0),
+      defaultTransition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 500),
       title: 'Reddit Feeling',
       debugShowCheckedModeBanner: false,
       theme: appThemeData,

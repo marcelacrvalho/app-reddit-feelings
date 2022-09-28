@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reddit_feeling/app/global/widgets/text_widgets.dart';
 import 'package:reddit_feeling/app/modules/home/controllers/home_controllers.dart';
 import '../../../theme/app_theme.dart';
 
@@ -36,32 +37,31 @@ class CustomDataGridView extends StatelessWidget {
         ),
         itemBuilder: (context, index) {
           return GestureDetector(
+            onTap: () => HomeController.to.toTickerPage(
+              HomeController.to.listData![index],
+            ),
             child: Container(
-                color: appThemeData.primaryColorLight.withOpacity(0.2),
-                width: 100,
-                height: 100,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      HomeController.to.listData![index].ticker!,
-                      style: TextStyle(
-                        color: HomeController.to.listData?[index].sentiment ==
-                                'Bullish'
-                            ? HomeController.to.listColorsFeeling[0]
-                            : HomeController.to.listColorsFeeling[1],
-                        fontSize: appThemeData.textTheme.titleLarge?.fontSize,
-                      ),
-                    ),
-                    Text(
-                      HomeController.to.listData![index].sentiment!,
-                      style: TextStyle(
-                        color: appThemeData.primaryColorLight,
-                        fontSize: appThemeData.textTheme.bodyMedium?.fontSize,
-                      ),
-                    )
-                  ],
-                )),
+              color: appThemeData.primaryColorLight.withOpacity(0.2),
+              width: 100,
+              height: 100,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomTextGlobalWidget(
+                    text: HomeController.to.listData![index].ticker!,
+                    color: HomeController.to.listData?[index].sentiment ==
+                            'Bullish'
+                        ? HomeController.to.listColorsFeeling[0]
+                        : HomeController.to.listColorsFeeling[1],
+                    fontSize: appThemeData.textTheme.titleLarge!.fontSize!,
+                  ),
+                  CustomTextGlobalWidget(
+                    text: HomeController.to.listData![index].sentiment!,
+                    fontSize: appThemeData.textTheme.bodyMedium!.fontSize!,
+                  ),
+                ],
+              ),
+            ),
           );
         });
   }

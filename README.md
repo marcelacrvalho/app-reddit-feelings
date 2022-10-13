@@ -9,8 +9,6 @@ GetX
 <br>
 <b> METODOLOGIAS E DESIGNS </b>
 <br>
-Clean Architecture 
-<br>
 Reactive Programming
 <br>
 MVC
